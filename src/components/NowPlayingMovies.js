@@ -14,7 +14,7 @@ import axios from "axios";
 function NowPlayingMovies() {
   const { isLoading, error, data } = useQuery("Movies", () =>
     axios(
-      "https://api.themoviedb.org/3/movie/now_playing?api_key=d60745d296221c0d52b06d66535af069&language=en-US&page=1"
+      "https://api.themoviedb.org/3/movie/580489/credits?api_key=d60745d296221c0d52b06d66535af069"
     )
   );
 
