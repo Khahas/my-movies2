@@ -10,7 +10,6 @@ import Col from "react-bootstrap/Col";
 
 function TopMovies() {
   const [movieCast, setMovieCast] = useState([]);
-  const [movie, setMovie] = useState([]);
 
   const getCast = async (id) => {
     const response = await fetch(

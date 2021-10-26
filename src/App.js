@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import  Navbar  from "./components/Navbar";
 // import HomePage from "./components/HomePage";
 import  NowPlayingMovies  from "./components/NowPlayingMovies";
-import  LatestMovies  from "./components/LatestMovies";
+import  PopularMovies  from "./components/PopularMovies";
 import  TopMovies  from "./components/TopMovies";
 
 
@@ -23,8 +23,8 @@ function App() {
           <NowPlayingMovies/>
         </Route>
 
-        <Route exact path="/LatestMovies">
-          <LatestMovies/>
+        <Route exact path="/PopularMovies">
+          <PopularMovies/>
         </Route>
 
         <Route exact path="/TopMovies">

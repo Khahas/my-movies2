@@ -14,11 +14,11 @@ const Navigation = () => {
           Now Playing Movies
         </Link>
 
-        <Link to="/LatestMovies" className="nav-link">
+        <Link to="/PopularMovies" className="nav-link">
           <span role="img" aria-label="a pile of books">
             📚
           </span>{" "}
-          Latest
+          Popular
         </Link>
 
         <Link to="/topMovies" className="nav-link">

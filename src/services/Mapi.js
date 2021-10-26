@@ -1,56 +1,20 @@
-import axios from 'axios'
-
-axios.defaults.baseURL = import.meta.env.BASE_URL
-
-const get = async (endpoint) => {
-	const response = await axios.get(endpoint)
-
-	return response.data
-}
+const baseURL = 'https://api.themoviedb.org/3/movie/580489/credits?api_key='
 
 /**
- * Get films
+ * Get a random dog image
  *
- * @param {number} page Page of films to get
  * @returns Promise
  */
-export const getFilms = async (page = null) => {
-	return get(`/films/?page=${page}`)
-}
+export const getMovies = async () => {
+	const response = await fetch(baseURL + 'd60745d296221c0d52b06d66535af069')
 
-/**
- * Get a single film
- *
- * @param {number} id Film ID
- * @returns Promise
- */
-export const getFilm = async (id = null) => {
-	return get(`/films/${id}/`)
-}
+	if (!response.ok) {
+		throw new Error("API responded that it was not feeling so good.")
+	}
 
-/**
- * Get people
- *
- * @param {number} page Page of people to get
- * @returns Promise
- */
-export const getPeople = async (page = null) => {
-	return get(`/people/?page=${page}`)
-}
-
-/**
- * Get a single person
- *
- * @param {number} id Person ID
- * @returns Promise
- */
-export const getPerson = async (id = null) => {
-	return get(`/people/${id}/`)
+	return response.json()
 }
 
 export default {
-	getFilms,
-	getFilm,
-	getPeople,
-	getPerson,
+	getMovies,
 }
