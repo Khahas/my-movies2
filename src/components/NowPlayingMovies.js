@@ -5,9 +5,12 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import MovieModal from "./Modal";
 
 function NowPlayingMovies() {
   const [movieCast, setMovieCast] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState({});
 
   const { isLoading, error, data } = useQuery("Movies", () =>
     axios(
@@ -22,12 +25,23 @@ function NowPlayingMovies() {
     setMovieCast(res.cast);
     console.log(res.cast);
   };
+  const getInfo = (movie) => {
+    getCast(movie.id);
+    setSelectedMovie(movie);
+    setModalShow(true);
+  };
 
   if (error) return <h1> Error: {error.message}, Try again!</h1>;
   if (isLoading) return <h1> Loading...</h1>;
   console.log(data);
   return (
     <Container>
+      <MovieModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        movie={selectedMovie}
+        movieCast={movieCast}
+      />
       {data && data.data && data.data.results && data.data.results.length ? (
         <Row>
           {data.data.results.map((movieItem, index) => (
@@ -40,36 +54,14 @@ function NowPlayingMovies() {
                   alt="poster"
                 />
                 <div>{movieItem.name}</div>
-                {movieCast.length ? <p>{movieItem.overview}</p> : null}
                 <div>
                   {" "}
-                  <Button onClick={() => getCast(movieItem.id)}>Läs mer</Button>
+                  <Button onClick={() => getInfo(movieItem)}>Läs mer</Button>
                 </div>
               </div>
             </Col>
           ))}
         </Row>
-      ) : null}
-
-      {movieCast.length ? (
-        <div className="col-xs-12">
-          <h4>Skådespelare</h4>
-          {movieCast.map((item, index) => (
-            <div className="crew-name" key={index}>
-              <ul>
-                <li>
-                  <a href="#">{item.name}</a>
-                  <img
-                    className="crew-profile"
-                    key={index}
-                    src={`https://image.tmdb.org/t/p/w200/${item.profile_path}`}
-                    alt="poster"
-                  />
-                </li>
-              </ul>
-            </div>
-          ))}
-        </div>
       ) : null}
     </Container>
   );
