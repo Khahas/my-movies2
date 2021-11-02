@@ -5,7 +5,7 @@ import  Navbar  from "./components/Navbar";
 // import HomePage from "./components/HomePage";
 import  NowPlayingMovies  from "./components/NowPlayingMovies";
 import  PopularMovies  from "./components/PopularMovies";
-import  TopMovies  from "./components/TopMovies";
+import  Movies  from "./components/Movies";
 
 
 
@@ -15,10 +15,6 @@ function App() {
       <Navbar/>
 
       <Switch>
-      {/* <Route exact path="/">
-          <HomePage/>
-        </Route> */}
-
         <Route exact path="/NowPlayingMovies">
           <NowPlayingMovies/>
         </Route>
@@ -27,8 +23,8 @@ function App() {
           <PopularMovies/>
         </Route>
 
-        <Route exact path="/TopMovies">
-          <TopMovies/>
+        <Route exact path="/Movies">
+          <Movies/>
         </Route>
       </Switch>
     </Router>

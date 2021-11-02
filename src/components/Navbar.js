@@ -21,11 +21,11 @@ const Navigation = () => {
           Popular
         </Link>
 
-        <Link to="/topMovies" className="nav-link">
+        <Link to="/Movies" className="nav-link">
           <span role="img" aria-label="a pile of books">
             📚
           </span>{" "}
-          TopMovies
+          Movies
         </Link>
       </Container>
     </Navbar>
