@@ -8,24 +8,15 @@ const Navigation = () => {
     <Navbar bg="dark" variant="dark" expand="md">
       <Container>
         <Link to="/NowPlayingMovies" className="navbar-brand">
-          <span role="img" aria-label="A library card">
-            💳
-          </span>{" "}
           Now Playing Movies
         </Link>
 
-        <Link to="/PopularMovies" className="nav-link">
-          <span role="img" aria-label="a pile of books">
-            📚
-          </span>{" "}
+        <Link to="/PopularMovies" className="navbar-brand">
           Popular
         </Link>
 
-        <Link to="/Movies" className="nav-link">
-          <span role="img" aria-label="a pile of books">
-            📚
-          </span>{" "}
-          Movies
+        <Link to="/TopMovies" className="navbar-brand">
+          TopMovies
         </Link>
       </Container>
     </Navbar>

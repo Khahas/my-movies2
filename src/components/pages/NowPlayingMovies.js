@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import MovieModal from "./Modal";
+import { Container, Button, Row, Col } from "react-bootstrap";
+import MovieModal from "../Modal";
 
-function PopularMovies() {
+function NowPlayingMovies() {
   const [movieCast, setMovieCast] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({});
 
   const { isLoading, error, data } = useQuery("Movies", () =>
     axios(
-      `https://api.themoviedb.org/3/movie/popular?api_key=d60745d296221c0d52b06d66535af069`
+      "https://api.themoviedb.org/3/movie/now_playing?api_key=d60745d296221c0d52b06d66535af069"
     )
   );
 
@@ -26,25 +23,24 @@ function PopularMovies() {
     setMovieCast(res.cast);
     console.log(res.cast);
   };
-
   const getInfo = (movie) => {
     getCast(movie.id);
     setSelectedMovie(movie);
     setModalShow(true);
-  }
+  };
 
   if (error) return <h1> Error: {error.message}, Try again!</h1>;
-  if (isLoading) return <h1> loading...</h1>;
+  if (isLoading) return <h1> Loading...</h1>;
   console.log(data);
   return (
     <Container>
+      <h2>Now Playing Movies</h2>
       <MovieModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         movie={selectedMovie}
         movieCast={movieCast}
       />
-
       {data && data.data && data.data.results && data.data.results.length ? (
         <Row>
           {data.data.results.map((movieItem, index) => (
@@ -70,4 +66,4 @@ function PopularMovies() {
   );
 }
 
-export default PopularMovies;
+export default NowPlayingMovies;

@@ -1,51 +1,79 @@
 import Button from "react-bootstrap/Button";
-
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
+import { Container } from "react-bootstrap";
+import ActorModal from "./ActorModal";
 
 function MovieModal(props) {
-  return (
-    <Modal
-      show={props.show}
-      onHide={props.onHide}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {props.movie.title}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <p>
-          {props.movie.overview}
-        </p>
+  const [actor, setActor] = useState([]);
+  const [selectedActor, setSelectedActor] = useState([]);
+  const [actorModalShow, setActorModalShow] = useState(false);
 
-        {props.movieCast.length ? (
-          <div className="col-xs-12">
-            <h4>Skådespelare</h4>
-            {props.movieCast.map((item, index) => (
-              <div className="crew-name" key={index}>
-                <ul>
-                  <li>
-                    <a href="#">{item.name}</a>
-                    <img
-                      className="crew-profile"
-                      key={index}
-                      src={`https://image.tmdb.org/t/p/w200/${item.profile_path}`}
-                      alt="poster"
-                    />
-                  </li>
-                </ul>
-              </div>
-            ))}
-          </div>
-        ) : null}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+  const getActor = async (id) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/person/${id}?api_key=d60745d296221c0d52b06d66535af069&language=en-US`
+    );
+    const res = await response.json();
+    setSelectedActor(res);
+  };
+
+  const getInfo = (actor) => {
+    getActor(actor);
+    setActor(actor);
+    setActorModalShow(true);
+  };
+
+  return (
+    <Container>
+      <ActorModal
+        show={actorModalShow}
+        onHide={() => setActorModalShow(false)}
+        selectedActor={selectedActor}
+      />
+      <Modal
+        show={props.show}
+        onHide={props.onHide}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            {props.movie.title}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{props.movie.overview}</p>
+
+          {props.movieCast.length ? (
+            <div className="col-xs-12">
+              <h4>Skådespelare</h4>
+              {props.movieCast.map((item, index) => (
+                <div className="crew-name" key={index}>
+                  <ul>
+                    <li>
+                      <a href="#" onClick={() => getInfo(item.id)}>
+                        {item.name}
+                      </a>
+
+                      <img
+                        className="crew-profile"
+                        key={index}
+                        src={`https://image.tmdb.org/t/p/w200/${item.profile_path}`}
+                        alt="poster"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    </Container>
   );
 }
 export default MovieModal;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import { usePaginatedQuery } from "react-query";
-import MovieCard from "./MovieCard";
+import MovieCard from "../MovieCard";
 
 const fetchMovies = async (key, page) => {
   const res = await fetch(
@@ -10,7 +10,7 @@ const fetchMovies = async (key, page) => {
   return res.json();
 };
 
-const MovieCards = () => {
+const TopMovie = () => {
   const [page, setPage] = useState(1);
   const { resolvedData, latestData, status } = usePaginatedQuery(
     ["Movies", page],
@@ -23,7 +23,7 @@ const MovieCards = () => {
 
   return (
     <Container>
-      <h2>Movies</h2>
+      <h2>Top Movies</h2>
 
       {status === "loading" && <div>Loading data</div>}
 
@@ -31,24 +31,26 @@ const MovieCards = () => {
 
       {status === "success" && (
         <>
-          <button
-            onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
-            disabled={page === 1}
-          >
-            Previous Page
-          </button>
-          <span>{page}</span>
-          <button onClick={() => setPage((prevState) => prevState + 1)}>
-            Next Page
-          </button>
           <Container>
+            <Row>
             {resolvedData.results.map((movieItem) => (
-              <MovieCard key={movieItem.id} movieItem={movieItem} />
+             <Col xs={3}> <MovieCard key={movieItem.id} movieItem={movieItem} /></Col>
             ))}
+            </Row>
+            <Button
+              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
+              disabled={page === 1}
+            >
+              Previous Page
+            </Button>
+            <span>{page}</span>
+            <Button onClick={() => setPage((prevState) => prevState + 1)}>
+              Next Page
+            </Button>
           </Container>
         </>
       )}
     </Container>
   );
 };
-export default MovieCards;
+export default TopMovie;

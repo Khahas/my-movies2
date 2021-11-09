@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import MovieModal from "./Modal";
 
 const MovieCard = ({ movieItem }) => {
@@ -24,7 +21,6 @@ const MovieCard = ({ movieItem }) => {
     console.log(res.cast);
   };
 
-  
   return (
     <Container className="display-flex">
       <MovieModal
@@ -37,13 +33,13 @@ const MovieCard = ({ movieItem }) => {
       <Row>
         <Col xs={3}>
           <div>
-            <p>{movieItem.title}</p>
+            <p style={{width: '200px'}}>{movieItem.title}</p>
             <img
               src={`https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`}
               alt="poster"
             />
             <div>{movieItem.name}</div>
-            <div>
+            <div style={{width: '200px', padding: '10px'}}>
               {" "}
               <Button onClick={() => getInfo(movieItem)}>Läs mer</Button>
             </div>
