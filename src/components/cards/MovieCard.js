@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Button, Row, Col } from "react-bootstrap";
-import MovieModal from "./Modal";
+import MovieModal from "../Modal";
 
 const MovieCard = ({ movieItem }) => {
   const [movieCast, setMovieCast] = useState([]);

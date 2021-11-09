@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import { usePaginatedQuery } from "react-query";
-import MovieCard from "../MovieCard";
+import MovieCard from "../cards/MovieCard";
 
 const fetchMovies = async (key, page) => {
   const res = await fetch(
@@ -16,11 +16,7 @@ const TopMovie = () => {
     ["Movies", page],
     fetchMovies
   );
-
-  console.log(latestData);
-  console.log(resolvedData);
-  console.log(status);
-
+  
   return (
     <Container>
       <h2>Top Movies</h2>
