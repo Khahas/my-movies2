@@ -28,9 +28,12 @@ const NowPlayingMovies = () => {
         <>
           <Container>
             <Row>
-            {resolvedData.results.map((movieItem) => (
-             <Col xs={3}> <MovieCard key={movieItem.id} movieItem={movieItem} /></Col>
-            ))}
+              {resolvedData.results.map((movieItem) => (
+                <Col xs={3}>
+                  {" "}
+                  <MovieCard key={movieItem.id} movieItem={movieItem} />
+                </Col>
+              ))}
             </Row>
             <Button
               onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
@@ -38,7 +41,7 @@ const NowPlayingMovies = () => {
             >
               Previous Page
             </Button>
-            <span>{page}</span>
+            <span>Current Page:{ page }</span>
             <Button onClick={() => setPage((prevState) => prevState + 1)}>
               Next Page
             </Button>
@@ -47,6 +50,6 @@ const NowPlayingMovies = () => {
       )}
     </Container>
   );
-}
+};
 
 export default NowPlayingMovies;

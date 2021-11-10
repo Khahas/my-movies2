@@ -10,9 +10,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-export const getIdFromUrl = (url) => {
-	// eslint-disable-next-line
-	const [_endpoint, id] = url.replace('https://api.themoviedb.org/3', '').slice(0, -1).split('/');
-	return id;
-}

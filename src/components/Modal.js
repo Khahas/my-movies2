@@ -52,16 +52,17 @@ function MovieModal(props) {
                 <div className="crew-name" key={index}>
                   <ul>
                     <li>
-                      <a href="#" onClick={() => getInfo(item.id)}>
-                        {item.name}
-                      </a>
-
                       <img
                         className="crew-profile"
                         key={index}
                         src={`https://image.tmdb.org/t/p/w200/${item.profile_path}`}
                         alt="poster"
                       />
+                      <a href="#" onClick={() => getInfo(item.id)}>
+                        {item.name}
+                      </a>
+
+                      
                     </li>
                   </ul>
                 </div>
