@@ -1,23 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const Navigation = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="md">
+    <Navbar collapseOnSelect expand="sm" bg="dark" variant="dark">
       <Container>
-        <Link to="/NowPlayingMovies" className="navbar-brand">
-          Now Playing Movies
-        </Link>
-
-        <Link to="/PopularMovies" className="navbar-brand">
-          Popular
-        </Link>
-
-        <Link to="/TopMovies" className="navbar-brand">
-          TopMovies
-        </Link>
+        <Navbar.Brand href="/">My-Movies</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/NowPlayingMovies">Now Playing movies</Nav.Link>
+            <Nav.Link href="/TopMovies">Top Movies</Nav.Link>
+            <Nav.Link href="/PopularMovies">Popular Movies</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

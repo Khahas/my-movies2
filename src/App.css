@@ -1,8 +1,10 @@
 #App {
-	position: relative;
+  position: relative;
 }
 
 .crew-profile {
-	width: 10px;
-	height: 10px;
+  width: 100px;
+  padding-left: 30px;
 }
+
+

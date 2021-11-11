@@ -16,7 +16,7 @@ const TopMovie = () => {
     ["Movies", page],
     fetchMovies
   );
-  
+
   return (
     <Container>
       <h2>Top Movies</h2>
@@ -29,9 +29,12 @@ const TopMovie = () => {
         <>
           <Container>
             <Row>
-            {resolvedData.results.map((movieItem) => (
-             <Col xs={3}> <MovieCard key={movieItem.id} movieItem={movieItem} /></Col>
-            ))}
+              {resolvedData.results.map((movieItem) => (
+                <Col sm={3}>
+                  {" "}
+                  <MovieCard key={movieItem.id} movieItem={movieItem} />
+                </Col>
+              ))}
             </Row>
             <Button
               onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
@@ -39,7 +42,7 @@ const TopMovie = () => {
             >
               Previous Page
             </Button>
-            <span>{page}</span>
+            <span style={{fontSize: "2rem"}}>Page:{page}</span>
             <Button onClick={() => setPage((prevState) => prevState + 1)}>
               Next Page
             </Button>

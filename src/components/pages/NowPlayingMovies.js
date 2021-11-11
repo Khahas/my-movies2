@@ -29,7 +29,7 @@ const NowPlayingMovies = () => {
           <Container>
             <Row>
               {resolvedData.results.map((movieItem) => (
-                <Col xs={3}>
+                <Col sm={3}>
                   {" "}
                   <MovieCard key={movieItem.id} movieItem={movieItem} />
                 </Col>
@@ -41,7 +41,7 @@ const NowPlayingMovies = () => {
             >
               Previous Page
             </Button>
-            <span>Current Page:{ page }</span>
+            <span style={{fontSize: "2rem"}}>Page:{page}</span>
             <Button onClick={() => setPage((prevState) => prevState + 1)}>
               Next Page
             </Button>
