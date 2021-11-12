@@ -1,5 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-
+// here do we have the html code for the actors
 function ActorModal(props) {
   return (
     <Modal
