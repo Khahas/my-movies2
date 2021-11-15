@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import NowPlayingMovies from "./components/pages/NowPlayingMovies";
 import PopularMovies from "./components/pages/PopularMovies";
 import TopMovies from "./components/pages/TopMovies";
+import HomePage from "./components/pages/HomePage";
 
 function App() {
   //här är våra huvud meny där man kan klicka sig igenom beroende på vad man vill se.
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
 
       <Switch>
+        <HomePage />
         <Route exact path="/NowPlayingMovies">
           <NowPlayingMovies />
         </Route>
