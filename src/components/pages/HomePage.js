@@ -18,29 +18,31 @@ function HomePage() {
   console.log(data.data.results);
   return (
     <Container>
-      <Carousel>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={`https://image.tmdb.org/t/p/w200/${data.data.results[0].poster_path}`}
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={`https://image.tmdb.org/t/p/w200/${data.data.results[1].poster_path}`}
-            alt="Second slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={`https://image.tmdb.org/t/p/w200/${data.data.results[2].poster_path}`}
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
+      <div className="home">
+        <Carousel>
+          <Carousel.Item>
+            <img
+              className="slide-image"
+              src={`https://image.tmdb.org/t/p/w200/${data.data.results[0].poster_path}`}
+              alt="First slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="slide-image"
+              src={`https://image.tmdb.org/t/p/w200/${data.data.results[1].poster_path}`}
+              alt="Second slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="slide-image"
+              src={`https://image.tmdb.org/t/p/w200/${data.data.results[2].poster_path}`}
+              alt="Third slide"
+            />
+          </Carousel.Item>
+        </Carousel>
+      </div>
     </Container>
   );
 }

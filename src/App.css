@@ -7,4 +7,22 @@
   padding-left: 30px;
 }
 
+.home {
+  display: block;
+  width: 65%;
+  margin-left: auto;
+}
 
+.slide-image {
+  width: 500px;
+}
+
+@media only screen and (max-width: 400px) {
+  .slide-image {
+    width: 100%;
+  }
+  .home {
+    display: block;
+    margin-left: 70px;
+  }
+}

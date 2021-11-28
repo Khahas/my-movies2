@@ -15,7 +15,10 @@ function App() {
       <Navbar />
 
       <Switch>
-        <HomePage />
+        <Route exact path="/">
+          <HomePage />
+          </Route>
+
         <Route exact path="/NowPlayingMovies">
           <NowPlayingMovies />
         </Route>
