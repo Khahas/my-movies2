@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav} from "react-bootstrap";
 
 const Navigation = () => {
   return (
@@ -13,6 +13,7 @@ const Navigation = () => {
             <Nav.Link href="/NowPlayingMovies">Now Playing movies</Nav.Link>
             <Nav.Link href="/TopMovies">Top Movies</Nav.Link>
             <Nav.Link href="/PopularMovies">Popular Movies</Nav.Link>
+            <Nav.Link href="/Genre">Genre</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

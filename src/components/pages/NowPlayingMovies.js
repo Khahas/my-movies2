@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { Container, Button, Row, Col } from "react-bootstrap";
 import { usePaginatedQuery } from "react-query";
+import { useHistory, useParams  } from "react-router-dom";
 import MovieCard from "../cards/MovieCard";
 
 //APT for fetching NowPlayingMovies
@@ -13,12 +14,29 @@ const fetchNowPlayingMovies = async (key, page) => {
 
 
 const NowPlayingMovies = () => {
-  const [page, setPage] = useState(1);
+  let history = useHistory();
+  let { pageParam } = useParams();
+  const [page, setPage] = useState(pageParam ? parseInt(pageParam): 1 );
+  useEffect(() => {
+    setPage(pageParam ? parseInt(pageParam): 1)
+  }, [pageParam])
   // Use usePaginatedQuery instead of useQuery, to divide large data into smaller contiguous intervals of data
   const { resolvedData, status } = usePaginatedQuery(
     ["Movies", page],
     fetchNowPlayingMovies
   );
+
+  const handleIncrese = () => {
+    setPage((prevState) => prevState + 1)
+    history.push(`/NowPlayingMovies/${page + 1}`);
+
+  }
+
+  const handleDecrese = () => {
+    setPage((prevState) => Math.max(prevState - 1, 0))
+    history.push(`/NowPlayingMovies/${page - 1}`);
+
+  }
 
   return (
     <Container>
@@ -35,7 +53,7 @@ const NowPlayingMovies = () => {
           <Container>
             <Row>
               {resolvedData.results.map((movieItem) => (
-                <Col sm={3}>
+                <Col xs={12} sm={6} md={4}>
                   {" "}
 
                   {/* MovieCard is a custom tag wich creates and populate one card for each movie */}
@@ -46,13 +64,13 @@ const NowPlayingMovies = () => {
             </Row>
             {/* this is a row with to buttons one for previous and one for next page */}
             <Button
-              onClick={() => setPage((prevState) => Math.max(prevState - 1, 0))}
+              onClick={() => handleDecrese()}
               disabled={page === 1}
             >
               Previous Page
             </Button>
             <span style={{fontSize: "2rem"}}>Page:{page}</span>
-            <Button onClick={() => setPage((prevState) => prevState + 1)}>
+            <Button onClick={() => handleIncrese()}>
               Next Page
             </Button>
           </Container>

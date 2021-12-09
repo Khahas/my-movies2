@@ -13,8 +13,15 @@ function MovieModal(props) {
     const response = await fetch(
       `https://api.themoviedb.org/3/person/${id}?api_key=d60745d296221c0d52b06d66535af069&language=en-US`
     );
+
     const res = await response.json();
-    setSelectedActor(res);
+
+    const responseMovies = await fetch(
+      `http://api.themoviedb.org/3/discover/movie?with_cast=${id}&sort_by=release_date.asc&api_key=d60745d296221c0d52b06d66535af069`
+    );
+
+    const resMovies = await responseMovies.json();
+    setSelectedActor({...res, movies: resMovies});
   };
 
   const getInfo = (actor) => {

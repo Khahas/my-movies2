@@ -42,6 +42,18 @@ function ActorModal(props) {
           populäritet:
           {props.selectedActor.popularity}
         </p>
+
+        { props.selectedActor.movies &&   
+              props.selectedActor.movies.results &&
+              props.selectedActor.movies.results.length ? (
+                <div>
+                  <b>Filmer {props.selectedActor.name} medverkat i:</b>
+                  
+                  {props.selectedActor.movies.results.map((movieItem) => (
+                   <div> {movieItem.title} </div>
+                ))}
+                </div>
+              ) : null}
       </Modal.Body>
       <Modal.Footer></Modal.Footer>
     </Modal>
