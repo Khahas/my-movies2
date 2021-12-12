@@ -58,18 +58,15 @@ const Genre = () => {
                 Gå tillbaka
               </Button>
 
-              {movieListGenre &&
-              movieListGenre.length ? (
+              {movieListGenre && movieListGenre.length ? (
                 <Row>
                   {movieListGenre.map((movieItem) => (
-                  <Col xs={12} sm={6} md={4}>
-                    {" "}
-  
-                    {/* MovieCard is a custom tag wich creates and populate one card for each movie */}
-  
-                    <MovieCard key={movieItem.id} movieItem={movieItem} />
-                  </Col>
-                ))}
+                    <Col xs={12} sm={6} md={4}>
+                      {" "}
+                      {/* MovieCard is a custom tag wich creates and populate one card for each movie */}
+                      <MovieCard key={movieItem.id} movieItem={movieItem} />
+                    </Col>
+                  ))}
                 </Row>
               ) : null}
             </Container>
