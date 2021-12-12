@@ -21,7 +21,7 @@ function MovieModal(props) {
     );
 
     const resMovies = await responseMovies.json();
-    setSelectedActor({...res, movies: resMovies});
+    setSelectedActor({ ...res, movies: resMovies });
   };
 
   const getInfo = (actor) => {
@@ -68,8 +68,6 @@ function MovieModal(props) {
                       <a href="#" onClick={() => getInfo(item.id)}>
                         {item.name}
                       </a>
-
-                      
                     </li>
                   </ul>
                 </div>
