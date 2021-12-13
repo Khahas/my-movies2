@@ -17,7 +17,7 @@ function MovieModal(props) {
     const res = await response.json();
 
     const responseMovies = await fetch(
-      `http://api.themoviedb.org/3/discover/movie?with_cast=${id}&sort_by=release_date.asc&api_key=d60745d296221c0d52b06d66535af069`
+      `https://api.themoviedb.org/3/discover/movie?with_cast=${id}&sort_by=release_date.asc&api_key=d60745d296221c0d52b06d66535af069`
     );
 
     const resMovies = await responseMovies.json();

@@ -13,12 +13,12 @@ const fetchGenreMovies = async () => {
 };
 
 const Genre = () => {
-  let history = useHistory();
-  let { pageParam } = useParams();
-  const [page, setPage] = useState(pageParam ? parseInt(pageParam) : 1);
+  // const history = useHistory();
+  const pageParams = useParams();
+  const [page, setPage] = useState(pageParams ? parseInt(pageParams) : 1);
   useEffect(() => {
-    setPage(pageParam ? parseInt(pageParam) : 1);
-  }, [pageParam]);
+    setPage(pageParams ? parseInt(pageParams) : 1);
+  }, [pageParams]);
   // Use usePaginatedQuery instead of useQuery, to divide large data into smaller contiguous intervals of data
   const [selectedMovieGenre, setSelectedMovieGenre] = useState({});
   const [movieListGenre, setMovieListGenre] = useState([]);
@@ -32,9 +32,9 @@ const Genre = () => {
     setMovieListGenre(res.results);
   };
 
-  const getMovieInfo = (movies) => {
-    console.log("123", movies);
-  };
+  // const getMovieInfo = (movies) => {
+  //   console.log("123", movies);
+  // };
 
   const getInfo = (movies) => {
     setSelectedMovieGenre(movies);
