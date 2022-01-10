@@ -8,6 +8,7 @@ import PopularMovies from "./components/pages/PopularMovies";
 import TopMovies from "./components/pages/TopMovies";
 import Genre from "./components/pages/Genre";
 import HomePage from "./components/pages/HomePage";
+import GenreMovies from "./components/pages/GenreMovies";
 
 function App() {
   //här är våra huvud meny där man kan klicka sig igenom beroende på vad man vill se.
@@ -18,9 +19,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <HomePage />
-          </Route>
+        </Route>
 
-          <Route path="/NowPlayingMovies/:pageParam">
+        <Route path="/NowPlayingMovies/:pageParam">
           <NowPlayingMovies />
         </Route>
 
@@ -28,27 +29,27 @@ function App() {
           <NowPlayingMovies />
         </Route>
 
-        <Route  path="/PopularMovies/:pageParam">
+        <Route path="/PopularMovies/:pageParam">
           <PopularMovies />
         </Route>
 
-        <Route  path="/PopularMovies">
+        <Route path="/PopularMovies">
           <PopularMovies />
         </Route>
 
-        <Route  path="/TopMovies/:pageParam">
+        <Route path="/TopMovies/:pageParam">
           <TopMovies />
         </Route>
 
-        <Route  path="/TopMovies">
+        <Route path="/TopMovies">
           <TopMovies />
         </Route>
 
-        <Route  path="/Genre/:pageParam">
-          <Genre />
+        <Route path="/GenreMovies/:genre">
+          <GenreMovies />
         </Route>
 
-        <Route  path="/Genre">
+        <Route path="/Genre">
           <Genre />
         </Route>
       </Switch>
