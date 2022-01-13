@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import { Container, Button, Row, Col } from "react-bootstrap";
+import { Container, Button, Row, Col, Alert } from "react-bootstrap";
 import MovieModal from "../Modal";
 import { useQuery } from "react-query";
-import axios from "axios";
+import { fetchMovies } from "../../services/API";
 
 const MovieCard = ({ movieItem }) => {
   const [movieCast, setMovieCast] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState({});
 
-  const { isLoading, error, data } = useQuery("getCast", () =>
-    axios(
-      `https://api.themoviedb.org/3/movie/${movieItem.id}/credits?api_key=d60745d296221c0d52b06d66535af069`
-    )
+  const { isLoading, isError, data } = useQuery(["Movies"], () =>
+    fetchMovies()
   );
+  
+  
 
   //getInfois a function to populate getCast, movieCast,setSelectedMovie and then open the modal
   const getInfo = (movie) => {
-    setMovieCast(data.data.cast);
+    setMovieCast(data.cast);
     setSelectedMovie(movie);
     setModalShow(true);
   };
@@ -25,6 +25,13 @@ const MovieCard = ({ movieItem }) => {
 
   return (
     <Container className="display-flex">
+      {isLoading && <p className="my-3">Loading...</p>}
+
+      {isError && (
+        <Alert variant="warning" className="my-3">
+          <strong>Error:</strong> {isError.message}
+        </Alert>
+      )}
       <MovieModal
         show={modalShow}
         onHide={() => setModalShow(false)}

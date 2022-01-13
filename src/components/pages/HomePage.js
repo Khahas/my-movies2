@@ -1,20 +1,23 @@
 import { useQuery } from "react-query";
-import axios from "axios";
+import { fetchUpcomingMovies } from "../../services/API";
 import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
 
 //APT for fetching PopularMovies
 
 function HomePage() {
-  const { isLoading, error, data } = useQuery("xxx", () =>
-    axios(
-      "https://api.themoviedb.org/3/movie/upcoming?api_key=d60745d296221c0d52b06d66535af069"
-    )
-  );
-  //poster_path
-  if (error) return <h1> Error: {error.message}, Try again!</h1>;
-  if (isLoading) return <h1> loading...</h1>;
-  console.log(data.data.results);
+   const { isLoading, isError, error, data } = useQuery(["Homepage"], () =>
+     fetchUpcomingMovies()
+   );
+  
+   if (isLoading) {
+     return <span>Loading...</span>;
+   }
+
+   if (isError) {
+     return <span>Error: {error.message}</span>;
+   }
+
   return (
     <Container>
       <div className="home">
@@ -22,21 +25,21 @@ function HomePage() {
           <Carousel.Item>
             <img
               className="slide-image"
-              src={`https://image.tmdb.org/t/p/w200/${data.data.results[0].poster_path}`}
+              src={`https://image.tmdb.org/t/p/w200/${data.results[0].poster_path}`}
               alt="First slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="slide-image"
-              src={`https://image.tmdb.org/t/p/w200/${data.data.results[1].poster_path}`}
+              src={`https://image.tmdb.org/t/p/w200/${data.results[1].poster_path}`}
               alt="Second slide"
             />
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="slide-image"
-              src={`https://image.tmdb.org/t/p/w200/${data.data.results[2].poster_path}`}
+              src={`https://image.tmdb.org/t/p/w200/${data.results[2].poster_path}`}
               alt="Third slide"
             />
           </Carousel.Item>

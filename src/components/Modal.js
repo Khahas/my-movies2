@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import ActorModal from "./ActorModal";
+import { fetchActor, fetchActorDetails } from "../services/API";
+
 
 function MovieModal(props) {
   const [actor, setActor] = useState([]);
@@ -10,18 +12,8 @@ function MovieModal(props) {
   const [actorModalShow, setActorModalShow] = useState(false);
 
   const getActor = async (id) => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/person/${id}?api_key=d60745d296221c0d52b06d66535af069&language=en-US`
-    );
-
-    const res = await response.json();
-
-    const responseMovies = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?with_cast=${id}&sort_by=release_date.asc&api_key=d60745d296221c0d52b06d66535af069`
-    );
-
-    const resMovies = await responseMovies.json();
-    setSelectedActor({ ...res, movies: resMovies });
+ 
+    setSelectedActor({ ...(await fetchActor(id)), movies: await fetchActorDetails(id) });
   };
 
   const getInfo = (actor) => {

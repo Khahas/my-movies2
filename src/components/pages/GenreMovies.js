@@ -3,6 +3,7 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import { usePaginatedQuery } from "react-query";
 import { useHistory, useParams } from "react-router-dom";
 import MovieCard from "../cards/MovieCard";
+import { fetchGenreMovies} from "../../services/API"
 
 function GenreMovies() {
   const history = useHistory();
@@ -13,14 +14,10 @@ function GenreMovies() {
     setPage(pageParam ? parseInt(pageParam) : 1);
   }, [pageParam]);
 
-  const getGenreMovies = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=d60745d296221c0d52b06d66535af069&with_genres=${genre}&language=en-US&page=${page}`
-    );
-    return response.json();
-  };
-
-  const { data, status } = usePaginatedQuery(["Genre", page], getGenreMovies);
+   const { data, status } = usePaginatedQuery(["Movies", page], () =>
+     fetchGenreMovies(page)
+   );
+  // const { data, status } = usePaginatedQuery(["Genre", page], getGenreMovies);
 
   const handleIncrese = () => {
     setPage((prevState) => prevState + 1);

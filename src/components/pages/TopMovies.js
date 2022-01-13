@@ -3,14 +3,15 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import { usePaginatedQuery } from "react-query";
 import { useHistory, useParams  } from "react-router-dom";
 import MovieCard from "../cards/MovieCard";
+import { fetchTopMovies } from "../../services/API";
 
 //APT for fetching NowPlayingMovies
-const fetchMovies = async (key, page) => {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=d60745d296221c0d52b06d66535af069&language=en-US&page=${page}`
-  );
-  return res.json();
-};
+// const fetchMovies = async (key, page) => {
+//   const res = await fetch(
+//     `https://api.themoviedb.org/3/movie/top_rated?api_key=d60745d296221c0d52b06d66535af069&language=en-US&page=${page}`
+//   );
+//   return res.json();
+// };
 
 const TopMovie = () => {
   let history = useHistory();
@@ -20,9 +21,8 @@ const TopMovie = () => {
     setPage(pageParam ? parseInt(pageParam): 1)
   }, [pageParam])
   // Use usePaginatedQuery instead of useQuery, to divide large data into smaller contiguous intervals of data
-  const { resolvedData, status } = usePaginatedQuery(
-    ["Movies", page],
-    fetchMovies
+  const { resolvedData, status } = usePaginatedQuery(["Movies", page], () =>
+    fetchTopMovies(page)
   );
 
   const handleIncrese = () => {
