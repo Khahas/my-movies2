@@ -15,9 +15,8 @@ function GenreMovies() {
   }, [pageParam]);
 
    const { data, status } = usePaginatedQuery(["Movies", page], () =>
-     fetchGenreMovies(page)
+     fetchGenreMovies(genre, page)
    );
-  // const { data, status } = usePaginatedQuery(["Genre", page], getGenreMovies);
 
   const handleIncrese = () => {
     setPage((prevState) => prevState + 1);

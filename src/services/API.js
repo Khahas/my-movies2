@@ -1,17 +1,16 @@
 const baseURL = "https://api.themoviedb.org/3/";
 const api_key = "d60745d296221c0d52b06d66535af069";
 const lang = "en-US";
-const region = "TR";
 
 export const fetchTopMovies = async (page) => {
   const res = await fetch(`
-      ${baseURL}movie/top_rated?api_key=${api_key}&language=${lang}&page=${page}&region=${region}`);
+      ${baseURL}movie/top_rated?api_key=${api_key}&language=${lang}&page=${page}`);
   return res.json();
 };
 
 export const fetchPopularMovies = async (page) => {
   const res = await fetch(`
-        ${baseURL}movie/popular?api_key=${api_key}&language=${lang}&page=${page}&region=${region}`);
+        ${baseURL}movie/popular?api_key=${api_key}&language=${lang}&page=${page}`);
   return res.json();
 };
 
@@ -31,14 +30,9 @@ export const fetchGenre = async () => {
   return res.json();
 };
 
-export const fetchMovieDetails = async (movieId) => {
-  const res = await fetch(`
-        ${baseURL}movie/${movieId}?api_key=${api_key}&append_to_response=credits`);
-  return res.json();
-};
 export const fetchMovies = async (movieId) => {
   const res = await fetch(`
-        ${baseURL}movie/${movieId}/credits?api_key=${api_key}&append_to_response=credits`);
+        ${baseURL}movie/${movieId}/credits?api_key=${api_key}`);
   return res.json();
 };
 
@@ -49,14 +43,12 @@ export const fetchActor = async (actorId) => {
   return res.json();
 };
 
-export const fetchActorDetails = async (actorId) => {
+export const fetchActorInfo = async (actorId) => {
   const res = await fetch(
-   `${baseURL}discover/movie?with_cast=${actorId}&sort_by=release_date.asc&api_key=${api_key}`
-    
+    `${baseURL}discover/movie?with_cast=${actorId}&sort_by=release_date.asc&api_key=${api_key}`
   );
   return res.json();
 };
-
 
 export const fetchGenreMovies = async (genreId, page) => {
   const res = await fetch(

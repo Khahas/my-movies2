@@ -10,7 +10,7 @@ const MovieCard = ({ movieItem }) => {
   const [selectedMovie, setSelectedMovie] = useState({});
 
   const { isLoading, isError, data } = useQuery(["Movies"], () =>
-    fetchMovies()
+    fetchMovies(movieItem.id)
   );
   
   
@@ -21,8 +21,7 @@ const MovieCard = ({ movieItem }) => {
     setSelectedMovie(movie);
     setModalShow(true);
   };
-  // this function fetch the cast for the indiviual movies and then set it to movieCast const
-
+  
   return (
     <Container className="display-flex">
       {isLoading && <p className="my-3">Loading...</p>}

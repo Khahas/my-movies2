@@ -3,22 +3,21 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Container } from "react-bootstrap";
 import ActorModal from "./ActorModal";
-import { fetchActor, fetchActorDetails } from "../services/API";
-
+import { fetchActor, fetchActorInfo } from "../services/API";
 
 function MovieModal(props) {
-  const [actor, setActor] = useState([]);
   const [selectedActor, setSelectedActor] = useState([]);
   const [actorModalShow, setActorModalShow] = useState(false);
 
   const getActor = async (id) => {
- 
-    setSelectedActor({ ...(await fetchActor(id)), movies: await fetchActorDetails(id) });
+    setSelectedActor({
+      ...(await fetchActor(id)),
+      movies: await fetchActorInfo(id),
+    });
   };
 
   const getInfo = (actor) => {
     getActor(actor);
-    setActor(actor);
     setActorModalShow(true);
   };
 
@@ -57,9 +56,9 @@ function MovieModal(props) {
                         src={`https://image.tmdb.org/t/p/w200/${item.profile_path}`}
                         alt="poster"
                       />
-                      <a href="#" onClick={() => getInfo(item.id)}>
+                      <Button onClick={() => getInfo(item.id)}>
                         {item.name}
-                      </a>
+                      </Button>
                     </li>
                   </ul>
                 </div>

@@ -3,17 +3,7 @@ import { Container, Button, Row, Col } from "react-bootstrap";
 import { usePaginatedQuery } from "react-query";
 import { useHistory, useParams  } from "react-router-dom";
 import MovieCard from "../cards/MovieCard";
-
 import { fetchNowPlayingMovies } from "../../services/API";
-
-//APT for fetching NowPlayingMovies
-// const fetchNowPlayingMovies = async (key, page) => {
-//   const res = await fetch(
-//     `https://api.themoviedb.org/3/movie/now_playing?api_key=d60745d296221c0d52b06d66535af069&language=en-US&page=${page}`
-//   );
-//   return res.json();
-// };
-
 
 const NowPlayingMovies = () => {
   let history = useHistory();

@@ -3,8 +3,6 @@ import { fetchUpcomingMovies } from "../../services/API";
 import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
 
-//APT for fetching PopularMovies
-
 function HomePage() {
    const { isLoading, isError, error, data } = useQuery(["Homepage"], () =>
      fetchUpcomingMovies()

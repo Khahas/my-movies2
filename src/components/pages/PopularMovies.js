@@ -6,8 +6,6 @@ import { useHistory, useParams  } from "react-router-dom";
 import { fetchPopularMovies} from "../../services/API"
 
 
-//APT for fetching PopularMovies
-
 function PopularMovies() {
   let history = useHistory();
   let { pageParam } = useParams();
