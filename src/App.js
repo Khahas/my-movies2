@@ -45,7 +45,7 @@ function App() {
           <TopMovies />
         </Route>
 
-        <Route path="/GenreMovies/:genre">
+        <Route path="/GenreMovies/:genre/:pageParam">
           <GenreMovies />
         </Route>
 

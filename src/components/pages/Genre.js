@@ -12,7 +12,7 @@ const Genre = () => {
   );
 
   const goToMovies = (genre) => {
-   history.push(`/GenreMovies/${genre.id}`);
+   history.push(`/GenreMovies/${genre.id}/1`);
   };
 
   if (isError) {

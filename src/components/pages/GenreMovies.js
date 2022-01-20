@@ -25,7 +25,7 @@ function GenreMovies() {
 
   const handleDecrese = () => {
     setPage((prevState) => Math.max(prevState - 1, 0));
-    history.push(`/GenreMovies//${genre}/${page - 1}`);
+    history.push(`/GenreMovies/${genre}/${page - 1}`);
   };
   return (
     <Container>
